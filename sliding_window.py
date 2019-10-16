@@ -14,7 +14,10 @@ import glob
 
 features = []
 for filename in glob.glob('/Users/dingfeifei/Desktop/cele/cele_images/training/*.jpg'):
-    image = cv2.imread(filename)
+    try:
+        image = cv2.imread(filename)
+    except:
+        pass
     # load the image and define the window width and height
     # image = cv2.imread(args["image"])
     # image = cv2.resize(image, None, fx=1.5, fy=1.5)
