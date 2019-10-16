@@ -11,10 +11,6 @@ import itertools
 from sklearn.decomposition import PCA
 import numpy as np
 import glob
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True, help="Path to the image")
-args = vars(ap.parse_args())
 
 features = []
 for filename in glob.glob('/Users/dingfeifei/Desktop/cele/cele_images/training/*.jpg'):
@@ -36,7 +32,7 @@ for filename in glob.glob('/Users/dingfeifei/Desktop/cele/cele_images/training/*
             # MACHINE LEARNING CLASSIFIER TO CLASSIFY THE CONTENTS OF THE
             # WINDOW
             winSize = (96, 128)
-            blockSize = (24, 24)
+            blockSize = (16, 16)
             blockStride = (8, 8)
             cellSize = (8, 8)
             nbins = 9
@@ -58,6 +54,11 @@ for filename in glob.glob('/Users/dingfeifei/Desktop/cele/cele_images/training/*
 
 # print(features)
 features = np.array(features)
+print(features)
+
+# Save Numpy array
+np.save('features.npy', features)
+
 pca = PCA(n_components=0.95)
 pca.fit(features)
 print(features.shape)
